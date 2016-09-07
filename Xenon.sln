@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenonCore", "XenonCore\XenonCore.csproj", "{7DCA6779-F4F6-432B-A494-2D2A83310422}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenonInterpreter", "XenonInterpreter\XenonInterpreter.csproj", "{E461A22E-C873-4838-948A-33978321F244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenonTest", "XenonTest\XenonTest.csproj", "{0FAC8031-39A4-4FD0-80EB-F83CF90F0EAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DCA6779-F4F6-432B-A494-2D2A83310422}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7DCA6779-F4F6-432B-A494-2D2A83310422}.Debug|x86.Build.0 = Debug|Any CPU
+		{7DCA6779-F4F6-432B-A494-2D2A83310422}.Release|x86.ActiveCfg = Release|Any CPU
+		{7DCA6779-F4F6-432B-A494-2D2A83310422}.Release|x86.Build.0 = Release|Any CPU
+		{E461A22E-C873-4838-948A-33978321F244}.Debug|x86.ActiveCfg = Debug|x86
+		{E461A22E-C873-4838-948A-33978321F244}.Debug|x86.Build.0 = Debug|x86
+		{E461A22E-C873-4838-948A-33978321F244}.Release|x86.ActiveCfg = Release|x86
+		{E461A22E-C873-4838-948A-33978321F244}.Release|x86.Build.0 = Release|x86
+		{0FAC8031-39A4-4FD0-80EB-F83CF90F0EAD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0FAC8031-39A4-4FD0-80EB-F83CF90F0EAD}.Debug|x86.Build.0 = Debug|Any CPU
+		{0FAC8031-39A4-4FD0-80EB-F83CF90F0EAD}.Release|x86.ActiveCfg = Release|Any CPU
+		{0FAC8031-39A4-4FD0-80EB-F83CF90F0EAD}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
