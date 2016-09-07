@@ -15,7 +15,7 @@ namespace XenonCore {
         /// <summary>
         /// The source.
         /// </summary>
-        readonly LexerSource source;
+        readonly SourceUnit source;
 
         /// <summary>
         /// The lexemes.
@@ -28,7 +28,7 @@ namespace XenonCore {
         /// <param name="source">Source.</param>
         public Lexer (string source) {
             lexemes = new List<Lexeme> ();
-            this.source = new LexerSource (source);
+            this.source = SourceUnit.FromSource (source);
         }
 
         /// <summary>
@@ -45,23 +45,41 @@ namespace XenonCore {
         /// </summary>
         void ScanToken () {
             var c = source.Peek ();
+
+            // Test for whitespace
             if (char.IsWhiteSpace (source.Peek ())) {
+
+                // Skip the whitespace
                 source.SkipWhitespace ();
-                lexemes.Add (new Lexeme (TokenClass.Whitespace, source, string.Empty));
                 return;
             }
+
+            // Test for hexadecimal number
             if (source.See (2) && source.Peeks (2) == "0x") {
+
+                // Read a hexadecimal number
                 ReadHexNumber ();
                 return;
             }
+
+            // Test for decimal number
             if (char.IsDigit (c)) {
+
+                // Read a decimal number
                 ReadNumber ();
                 return;
             }
+
+            // Test for single-character operator
             if (OperatorChars.Contains (c.ToString ())) {
+
+                // Read an operator
                 ReadOperator ();
                 return;
             }
+
+            // Build key-value-pairs of characters and their
+            // corresponding token classes.
             var dict = new Dictionary<char, TokenClass> {
                 { '{', TokenClass.OpenBrace },
                 { '}', TokenClass.CloseBrace },
@@ -73,44 +91,69 @@ namespace XenonCore {
                 { ':', TokenClass.Colon },
                 { ',', TokenClass.Comma }
             };
+
+            // Test for those characters
             if (dict.ContainsKey (c)) {
+
+                // Skip if advancing is possible
                 if (source.See ())
                     source.Skip ();
-                if (c == '{')
-                    source.OpenBrace ();
-                else if (c == '}')
-                    source.CloseBrace ();
+
+                // Add the lexeme
                 lexemes.Add (new Lexeme (dict[c], source, c));
                 return;
             }
+
+            // Test for other stuff
             switch (c) {
                 case '#':
+
+                    // Skip a character
                     source.Skip ();
+
+                    // Read a comment line
                     var comment = source.ReadLine ();
+
+                    // Test if the line cotnains source analysis hints
                     if (comment.TrimStart ().StartsWith ("analysis", StringComparison.Ordinal)) {
+
+                        // Parse the source analysis hint
                         var parts = comment.Trim ().Split (' ');
-                        if (parts.Length != 3)
-                            break;
+                        if (parts.Length != 3) break;
                         var action = parts[1].Trim ();
                         var name = parts[2].Trim ();
+
+                        // Add the source analysis hint
                         lexemes.Add (new Lexeme (TokenClass.SourceAnalysisHint, source, $"{action}:{name}"));
                     }
                     break;
                 case '\'':
                 case '"':
                 case '`':
+
+                    // Read a string
                     ReadString ();
                     break;
                 default:
+
+                    // Test for binary string
                     if (source.See () && c == 'b' && (source.Peek (1) == '\"' || source.Peek (1) == '\'')) {
+
+                        // Read a binary string
                         ReadBinaryString ();
                         break;
                     }
+
+                    // Test for identifier
                     if (char.IsLetter (c) || c == '_') {
+
+                        // Read an identifier
                         ReadIdentifier ();
                         break;
                     }
-                    throw new Exception ($"Unexpected token: '{c}' at {source.Location}");
+
+                    // The token was not handled by any of the above code; Throw an exception
+                    throw new Exception ($"Unexpected token: '{c}' at {source.Location}.");
             }
         }
 
@@ -132,7 +175,7 @@ namespace XenonCore {
                         [ 'f'  ] = '\f'
                     };
                     if (!dict.ContainsKey (next))
-                        throw new Exception ($"Unrecognized escape sequence: '\\{next}'");
+                        throw new Exception ($"Unrecognized escape sequence: '\\{next}'.");
                     c = dict[next];
                     source.Skip ();
                 }
@@ -151,7 +194,7 @@ namespace XenonCore {
                 c = source.Peek ();
             }
             if (c != delimiter)
-                throw new Exception ($"Unterminated string literal at {source.Location}");
+                throw new Exception ($"Unterminated string literal at {source.Location}.");
             if (source.See ())
                 source.Skip ();
             return accum.ToString ();
@@ -178,7 +221,7 @@ namespace XenonCore {
                 if (c == '.' && !isfloat)
                     isfloat = true;
                 else if (c == '.')
-                    throw new Exception ("Floating point number can only have one decimal point");
+                    throw new Exception ("Floating point numbers can only have one decimal point.");
                 accum.Append (c);
                 source.Skip ();
                 c = source.Peek ();
@@ -263,6 +306,8 @@ namespace XenonCore {
             var c = source.Peek ();
             while (char.IsLetterOrDigit (c) || c == '_') {
                 accum.Append (c);
+                if (!source.See ())
+                    break;
                 source.Skip ();
                 c = source.Peek ();
             }

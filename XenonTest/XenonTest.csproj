@@ -33,7 +33,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="TLexer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

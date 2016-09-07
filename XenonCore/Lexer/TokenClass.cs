@@ -7,11 +7,6 @@ namespace XenonCore {
     public enum TokenClass {
         
         /// <summary>
-        /// Regular whitespace.
-        /// </summary>
-        Whitespace,
-
-        /// <summary>
         /// A unicode string literal.
         /// </summary>
         StringLiteral,
