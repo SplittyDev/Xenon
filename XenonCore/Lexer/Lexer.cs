@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using static XenonCore.LexerConstants;
 
 namespace XenonCore {
 
@@ -8,64 +12,37 @@ namespace XenonCore {
     /// </summary>
     public class Lexer {
 
+        /// <summary>
+        /// The source.
+        /// </summary>
         readonly LexerSource source;
+
+        /// <summary>
+        /// The lexemes.
+        /// </summary>
         readonly List<Lexeme> lexemes;
 
-        readonly char[] OperatorChars = "+-*/=<>~!&^|%@?.".ToCharArray ();
-        readonly string[] OperatorStrings = "is,isnot,as".Split (',');
-        readonly string[] Keywords = {
-            // control flow
-            "if",
-            "else",
-            "do",
-            "while",
-            "for",
-            "in",
-            "break",
-            "continue",
-            "match",
-            "case",
-            "default",
-            "yield",
-            "return",
-            // type definitions
-            "func",
-            "lambda",
-            "class",
-            "enum",
-            "contract",
-            "trait",
-            "mixin",
-            "extend",
-            // class stuff
-            "super",
-            "self",
-            // constants
-            "true",
-            "false",
-            "null",
-            // exceptions
-            "raise",
-            "try",
-            "except",
-            // packages
-            "use",
-            "from",
-            // other
-            "with"
-        };
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:XenonCore.Lexer"/> class.
+        /// </summary>
+        /// <param name="source">Source.</param>
         public Lexer (string source) {
             lexemes = new List<Lexeme> ();
             this.source = new LexerSource (source);
         }
 
+        /// <summary>
+        /// Tokenizes the source.
+        /// </summary>
         public List<Lexeme> Scan () {
             while (source.See (1))
                 ScanToken ();
             return lexemes;
         }
 
+        /// <summary>
+        /// Scans a token.
+        /// </summary>
         void ScanToken () {
             var c = source.Peek ();
             if (char.IsWhiteSpace (source.Peek ())) {
@@ -81,7 +58,7 @@ namespace XenonCore {
                 ReadNumber ();
                 return;
             }
-            if (OperatorChars.Contains (c)) {
+            if (OperatorChars.Contains (c.ToString ())) {
                 ReadOperator ();
                 return;
             }
@@ -116,11 +93,12 @@ namespace XenonCore {
                             break;
                         var action = parts[1].Trim ();
                         var name = parts[2].Trim ();
-                        lexemes.Add (new Lexeme (TokenClass.IoshAnalysisHint, source, $"{action}:{name}"));
+                        lexemes.Add (new Lexeme (TokenClass.SourceAnalysisHint, source, $"{action}:{name}"));
                     }
                     break;
                 case '\'':
                 case '"':
+                case '`':
                     ReadString ();
                     break;
                 default:
@@ -145,13 +123,13 @@ namespace XenonCore {
                 if (c == '\\') {
                     var next = source.Peek ();
                     var dict = new Dictionary<char, char> {
-                        { '\"', '\"' },
-                        { '\'', '\'' },
-                        { 'n', '\n' },
-                        { 'r', '\r' },
-                        { 'b', '\b' },
-                        { 't', '\t' },
-                        { 'f', '\f' }
+                        [ '\"' ] = '\"',
+                        [ '\'' ] = '\'',
+                        [ 'n'  ] = '\n',
+                        [ 'r'  ] = '\r',
+                        [ 'b'  ] = '\b',
+                        [ 't'  ] = '\t',
+                        [ 'f'  ] = '\f'
                     };
                     if (!dict.ContainsKey (next))
                         throw new Exception ($"Unrecognized escape sequence: '\\{next}'");
@@ -182,7 +160,7 @@ namespace XenonCore {
         void ReadString () {
             char delimiter;
             var str = JustReadString (out delimiter);
-            var tokenclass = delimiter == '"' ? TokenClass.InterpolatedStringLiteral : TokenClass.StringLiteral;
+            var tokenclass = delimiter == '`' ? TokenClass.TemplateStringLiteral : TokenClass.StringLiteral;
             lexemes.Add (new Lexeme (tokenclass, source, str));
         }
 

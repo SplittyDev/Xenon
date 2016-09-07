@@ -35,6 +35,7 @@
     <Compile Include="Lexer\Lexer.cs" />
     <Compile Include="Lexer\Lexeme.cs" />
     <Compile Include="Lexer\TokenClass.cs" />
+    <Compile Include="Lexer\LexerConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
