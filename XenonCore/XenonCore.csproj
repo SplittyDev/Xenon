@@ -32,6 +32,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Lexer\LexerSource.cs" />
+    <Compile Include="Lexer\Lexer.cs" />
+    <Compile Include="Lexer\Lexeme.cs" />
+    <Compile Include="Lexer\TokenClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
