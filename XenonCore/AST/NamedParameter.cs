@@ -14,7 +14,7 @@ namespace XenonCore {
         /// <summary>
         /// The type.
         /// </summary>
-        public readonly NameExpression TypeHint;
+        public NameExpression TypeHint;
 
         /// <summary>
         /// Gets whether the parameter has a type hint.
@@ -28,6 +28,7 @@ namespace XenonCore {
         /// <param name="name">Name.</param>
         public NamedParameter (NameExpression name, NameExpression typeHint = null) {
             Name = name;
+            TypeHint = typeHint;
         }
 
         /// <summary>

@@ -21,6 +21,7 @@ namespace XenonCore {
         public virtual void Accept (AstRoot node) => Update (node);
         public virtual void Accept (NameExpression node) => Update (node);
         public virtual void Accept (FunctionDeclaration node) => Update (node);
+        public virtual void Accept (CodeBlock node) => Update (node);
 
         /// <summary>
         /// Updates the source location.

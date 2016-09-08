@@ -49,6 +49,7 @@
     <Compile Include="AST\FunctionDeclaration.cs" />
     <Compile Include="AST\NamedParameter.cs" />
     <Compile Include="AST\NameExpression.cs" />
+    <Compile Include="AST\CodeBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />

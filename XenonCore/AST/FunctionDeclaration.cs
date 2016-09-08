@@ -11,7 +11,12 @@ namespace XenonCore {
         /// <summary>
         /// The body.
         /// </summary>
-        public readonly AstNode Body;
+        public AstNode Body;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
+        public string Name;
 
         /// <summary>
         /// The arguments.
@@ -22,8 +27,7 @@ namespace XenonCore {
         /// Initializes a new instance of the <see cref="T:XenonCore.FunctionDeclaration"/> class.
         /// </summary>
         /// <param name="body">Body.</param>
-        public FunctionDeclaration (SourceLocation location, AstNode body) : base (location) {
-            this.Body = body;
+        public FunctionDeclaration (SourceLocation location) : base (location) {
             Arguments = new List<NamedParameter> ();
         }
 
