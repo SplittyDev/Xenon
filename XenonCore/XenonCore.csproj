@@ -38,9 +38,12 @@
     <Compile Include="SourceUnit.cs" />
     <Compile Include="SourceCursor.cs" />
     <Compile Include="SourceLocation.cs" />
+    <Compile Include="Parser\ParsingUnit.cs" />
+    <Compile Include="Parser\ParserException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
+    <Folder Include="Parser\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

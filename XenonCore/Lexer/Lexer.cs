@@ -260,8 +260,6 @@ namespace XenonCore {
             switch (op2) {
                 case ">>":
                 case "<<":
-                case "&&":
-                case "||":
                 case "==":
                 case "!=":
                 case "=>":
