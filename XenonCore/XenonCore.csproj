@@ -35,9 +35,6 @@
     <Compile Include="Lexer\Lexeme.cs" />
     <Compile Include="Lexer\TokenClass.cs" />
     <Compile Include="Lexer\LexerConstants.cs" />
-    <Compile Include="SourceUnit.cs" />
-    <Compile Include="SourceCursor.cs" />
-    <Compile Include="SourceLocation.cs" />
     <Compile Include="Parser\ParsingUnit.cs" />
     <Compile Include="Parser\ParserException.cs" />
     <Compile Include="Parser\Parser.cs" />
@@ -45,6 +42,9 @@
     <Compile Include="Visitors\IVisitor.cs" />
     <Compile Include="Visitors\AstVisitor.cs" />
     <Compile Include="AST\AstRoot.cs" />
+    <Compile Include="Lexer\SourceCursor.cs" />
+    <Compile Include="Lexer\SourceLocation.cs" />
+    <Compile Include="Lexer\SourceUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
