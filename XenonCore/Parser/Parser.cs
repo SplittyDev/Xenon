@@ -48,6 +48,43 @@ namespace XenonCore {
             // Return the root node
             return root;
         }
+
+        AstNode ParseStatement () {
+            var current = unit.Current;
+
+            // Try parsing a keyword
+            if (current.Is (TokenClass.Keyword)) {
+                switch (current.Value) {
+                    case "fn":
+                        return null;
+                        // return ParseFunctionDeclaration ();
+                }
+            }
+
+            // Try parsing a block
+            if (unit.Match (TokenClass.OpenBrace)) {
+                return null;
+                // return ParseBlock ();
+            }
+
+            return null;
+            // return ParseExpression ();
+        }
+
+        FunctionDeclaration ParseFunctionDeclaration () {
+            // TODO: Implement this
+            return null;
+        }
+
+        internal void Synchronize () {
+            while (unit.Current != null) {
+                var tk = unit.Read ();
+                if (tk.Is (TokenClass.CloseBracket)
+                    || tk.Is (TokenClass.Semicolon)) {
+                    return;
+                }
+            }
+        }
     }
 }
 

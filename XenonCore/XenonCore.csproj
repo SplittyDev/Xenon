@@ -46,6 +46,9 @@
     <Compile Include="Lexer\SourceLocation.cs" />
     <Compile Include="Lexer\SourceUnit.cs" />
     <Compile Include="Parser\AstVisualizer.cs" />
+    <Compile Include="AST\FunctionDeclaration.cs" />
+    <Compile Include="AST\NamedParameter.cs" />
+    <Compile Include="AST\NameExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
