@@ -45,6 +45,7 @@
     <Compile Include="Lexer\SourceCursor.cs" />
     <Compile Include="Lexer\SourceLocation.cs" />
     <Compile Include="Lexer\SourceUnit.cs" />
+    <Compile Include="Parser\AstVisualizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />

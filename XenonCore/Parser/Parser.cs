@@ -19,10 +19,31 @@ namespace XenonCore {
             this.unit = unit;
         }
 
-        public AstRoot Visit () {
+        /// <summary>
+        /// Parses the tokenized source.
+        /// </summary>
+        /// <returns>The root AST node.</returns>
+        public AstRoot Parse () {
 
             // Create the root node
             var root = new AstRoot (unit.Location);
+
+            try {
+
+                // Start parsing
+                while (unit.See ()) {
+
+                    // Parse a statement
+                    // root.AddChild (ParseStatement ());
+                }
+
+                // Print a visualization of the AST
+                AstVisualizer.Visualize (root);
+
+            } catch (ParserException e) {
+                Console.WriteLine (e.Message);
+                Environment.Exit (1);
+            }
 
             // Return the root node
             return root;
