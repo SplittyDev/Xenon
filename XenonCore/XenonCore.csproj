@@ -50,6 +50,10 @@
     <Compile Include="AST\NamedParameter.cs" />
     <Compile Include="AST\NameExpression.cs" />
     <Compile Include="AST\CodeBlock.cs" />
+    <Compile Include="Parser\BinaryOperation.cs" />
+    <Compile Include="Parser\UnaryOperation.cs" />
+    <Compile Include="AST\BinaryExpression.cs" />
+    <Compile Include="AST\TernaryExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
