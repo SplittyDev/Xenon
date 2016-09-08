@@ -26,9 +26,9 @@ namespace XenonCore {
         /// </summary>
         /// <returns>The root AST node.</returns>
         public AstRoot Parse () {
-
+            
             // Create the root node
-            var root = new AstRoot (unit.Location);
+            var root = new AstRoot (unit.See () ? unit.Location : SourceLocation.Zero);
 
             try {
 
@@ -68,8 +68,7 @@ namespace XenonCore {
 
             // Try parsing a block
             if (unit.Match (TokenClass.OpenBrace)) {
-                return null;
-                // return ParseBlock ();
+                return ParseBlock ();
             }
 
             return null;
@@ -109,7 +108,7 @@ namespace XenonCore {
             unit.Expect (TokenClass.Keyword, "fn");
 
             // Read the name of the function
-            node.Name = unit.Expect (TokenClass.Identifier).Value;
+            node.Name = ParseName ();
 
             // Read the argument list
             node.Arguments.AddRange (ParseArgumentList ());

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace XenonCore {
 
@@ -16,7 +18,7 @@ namespace XenonCore {
         /// <summary>
         /// The name.
         /// </summary>
-        public string Name;
+        public NameExpression Name;
 
         /// <summary>
         /// The arguments.
@@ -33,6 +35,21 @@ namespace XenonCore {
 
         public override void Visit (AstVisitor visitor) {
             visitor.Accept (this);
+        }
+
+        /// <summary>
+        /// Returns the string representation of this instance.
+        /// </summary>
+        /// <returns>The string representation.</returns>
+        public override string ToString () {
+            var accum = new StringBuilder ();
+            accum.Append ($"[Function: Name='{Name.Value}'");
+            if (Arguments.Count > 0) {
+                var args = string.Join (", ", Arguments.Select (a => a.Name.Value));
+                accum.Append ($" Arguments=[{args}]");
+            }
+            accum.Append ("]");
+            return accum.ToString ();
         }
     }
 }

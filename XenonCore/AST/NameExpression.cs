@@ -9,14 +9,14 @@ namespace XenonCore {
         /// <summary>
         /// The name.
         /// </summary>
-        public readonly string Name;
+        public readonly string Value;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NameExpression"/> class.
         /// </summary>
         /// <param name="location">Location.</param>
         public NameExpression (SourceLocation location, string name) : base (location) {
-            Name = name;
+            Value = name;
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace XenonCore {
             visitor.Accept (this);
         }
 
-        public override string ToString () => $"[Name: Value='{Name}']";
+        public override string ToString () => $"[Name: Value='{Value}']";
     }
 }
 

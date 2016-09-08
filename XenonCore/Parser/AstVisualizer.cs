@@ -28,6 +28,14 @@ namespace XenonCore {
                 Console.Write ("* Root");
                 foreach (var child in ((AstRoot) root).Children)
                     Visualize (child, depth + 1);
+            } else if (root is CodeBlock) {
+                foreach (var child in ((CodeBlock) root).Children)
+                    Visualize (child, depth);
+            } else if (root is FunctionDeclaration) {
+                Console.Write ($"* {root}");
+                Visualize (((FunctionDeclaration) root).Body, depth + 1, true);
+            } else if (root is NameExpression) {
+                Console.Write ($"* {root}");
             } else {
                 Console.Write ($"* {root}");
             }

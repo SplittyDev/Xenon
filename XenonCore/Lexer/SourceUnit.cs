@@ -125,7 +125,7 @@ namespace XenonCore {
         /// <param name="n">The number of characters to skip.</param>
         [MethodImpl (MethodImplOptions.AggressiveInlining)]
         public void Skip (int n = 1) {
-            Contract.Assert (See (n));
+            Contract.Assert (See (n - 1));
             for (var i = 0; i < n; i++) {
                 var c = Peek (i);
                 if (c == '\n') {

@@ -35,7 +35,7 @@ namespace XenonCore {
             "yield",
             "return",
             // type definitions
-            "func",
+            "fn",
             "class",
             "enum",
             "contract",
