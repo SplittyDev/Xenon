@@ -40,10 +40,17 @@
     <Compile Include="SourceLocation.cs" />
     <Compile Include="Parser\ParsingUnit.cs" />
     <Compile Include="Parser\ParserException.cs" />
+    <Compile Include="Parser\Parser.cs" />
+    <Compile Include="AST\AstNode.cs" />
+    <Compile Include="Visitors\IVisitor.cs" />
+    <Compile Include="Visitors\AstVisitor.cs" />
+    <Compile Include="AST\AstRoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
     <Folder Include="Parser\" />
+    <Folder Include="AST\" />
+    <Folder Include="Visitors\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
