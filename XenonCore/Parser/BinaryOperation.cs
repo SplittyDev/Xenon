@@ -28,6 +28,8 @@ namespace XenonCore {
         InclusiveRange,
         ExclusiveRange,
         NullCoalescing,
+        CompatibleWith,
+        NotCompatibleWith,
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using static XenonCore.LexerConstants;
 
@@ -242,7 +243,7 @@ namespace XenonCore {
                 source.Skip ();
                 c = source.Peek ();
             }
-            lexemes.Add (new Lexeme (TokenClass.IntLiteral, source, long.Parse (accum.ToString (), NumberStyles.HexNumber).ToString ()));
+            lexemes.Add (new Lexeme (TokenClass.IntLiteral, source, BigInteger.Parse ("0" + accum, NumberStyles.HexNumber).ToString ()));
         }
 
         void ReadOperator () {

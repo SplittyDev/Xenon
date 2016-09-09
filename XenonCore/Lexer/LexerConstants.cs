@@ -40,8 +40,6 @@ namespace XenonCore {
             "enum",
             "contract",
             "trait",
-            "mixin",
-            "extend",
             // class stuff
             "super",
             "self",

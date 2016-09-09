@@ -28,6 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +55,14 @@
     <Compile Include="Parser\UnaryOperation.cs" />
     <Compile Include="AST\BinaryExpression.cs" />
     <Compile Include="AST\TernaryExpression.cs" />
+    <Compile Include="AST\UnaryExpression.cs" />
+    <Compile Include="AST\CallExpression.cs" />
+    <Compile Include="Parser\ArgumentList.cs" />
+    <Compile Include="AST\TupleExpression.cs" />
+    <Compile Include="AST\IntegerExpression.cs" />
+    <Compile Include="AST\FloatExpression.cs" />
+    <Compile Include="AST\StringExpression.cs" />
+    <Compile Include="AST\ListExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />

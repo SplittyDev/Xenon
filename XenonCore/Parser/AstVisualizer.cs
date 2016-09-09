@@ -36,6 +36,22 @@ namespace XenonCore {
                 Visualize (((FunctionDeclaration) root).Body, depth + 1, true);
             } else if (root is NameExpression) {
                 Console.Write ($"* {root}");
+            } else if (root is BinaryExpression) {
+                Console.Write ($"* Binary expression: {((BinaryExpression) root).Operation}");
+                Visualize (((BinaryExpression) root).Left, depth + 1);
+                Visualize (((BinaryExpression) root).Right, depth + 1);
+            } else if (root is UnaryExpression) {
+                Console.Write ($"* Unary expression: {((UnaryExpression) root).Operation}");
+                Visualize (((UnaryExpression) root).Child, depth + 1);
+            } else if (root is TernaryExpression) {
+                Console.Write ($"* Ternary expression");
+                Visualize (((TernaryExpression) root).Condition, depth + 1);
+                Visualize (((TernaryExpression) root).Left, depth + 1);
+                Visualize (((TernaryExpression) root).Right, depth + 1);
+            } else if (root is CallExpression) {
+                Console.Write ($"* Call");
+                Visualize (((CallExpression) root).Arguments, depth + 1);
+                Visualize (((CallExpression) root).Target, depth + 1);
             } else {
                 Console.Write ($"* {root}");
             }
