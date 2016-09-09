@@ -63,12 +63,21 @@
     <Compile Include="AST\FloatExpression.cs" />
     <Compile Include="AST\StringExpression.cs" />
     <Compile Include="AST\ListExpression.cs" />
+    <Compile Include="Compiler\ICompilerBackend.cs" />
+    <Compile Include="Compiler\Targets\Xenon\XenonSemanticAnalyzer.cs" />
+    <Compile Include="Compiler\SymbolTable.cs" />
+    <Compile Include="Compiler\Symbol.cs" />
+    <Compile Include="Compiler\Scope.cs" />
+    <Compile Include="Compiler\XenonBackend.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />
     <Folder Include="Parser\" />
     <Folder Include="AST\" />
     <Folder Include="Visitors\" />
+    <Folder Include="Compiler\" />
+    <Folder Include="Compiler\Targets\" />
+    <Folder Include="Compiler\Targets\Xenon\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
