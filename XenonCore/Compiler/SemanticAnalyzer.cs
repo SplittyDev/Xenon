@@ -2,9 +2,9 @@
 namespace XenonCore {
 
     /// <summary>
-    /// Xenon semantic analyzer.
+    /// Semantic analyzer.
     /// </summary>
-    public class XenonSemanticAnalyzer : AstVisitor {
+    public class SemanticAnalyzer : AstVisitor {
 
         /// <summary>
         /// The symbol table.
@@ -14,7 +14,7 @@ namespace XenonCore {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:XenonCore.XenonSemanticAnalyzer"/> class.
         /// </summary>
-        public XenonSemanticAnalyzer () {
+        public SemanticAnalyzer () {
             symbolTable = new SymbolTable ();
         }
 
