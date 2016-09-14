@@ -12,7 +12,6 @@ namespace XenonInterpreter {
                 tpl = (1, 2, 3)
                 lsta = []
                 lstb = [1, 2, 3]
-                test = something (tpl)
             }
             ";
             Console.WriteLine ("Tokenizing source...");

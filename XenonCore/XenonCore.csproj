@@ -63,7 +63,6 @@
     <Compile Include="AST\FloatExpression.cs" />
     <Compile Include="AST\StringExpression.cs" />
     <Compile Include="AST\ListExpression.cs" />
-    <Compile Include="Compiler\ICompilerBackend.cs" />
     <Compile Include="Compiler\SymbolTable.cs" />
     <Compile Include="Compiler\Symbol.cs" />
     <Compile Include="Compiler\Scope.cs" />
@@ -76,6 +75,11 @@
     <Compile Include="Compiler\Instruction.cs" />
     <Compile Include="Compiler\Opcode.cs" />
     <Compile Include="Compiler\Label.cs" />
+    <Compile Include="Compiler\CompilerContext.cs" />
+    <Compile Include="Runtime\XenonName.cs" />
+    <Compile Include="Compiler\MethodFlags.cs" />
+    <Compile Include="Runtime\XenonString.cs" />
+    <Compile Include="Runtime\XenonBytecode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lexer\" />

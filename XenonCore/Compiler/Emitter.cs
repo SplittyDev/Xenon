@@ -6,7 +6,7 @@ namespace XenonCore {
     /// <summary>
     /// Emitter.
     /// </summary>
-    public class Emitter {
+    public class Emitter : XenonBytecode {
 
         /// <summary>
         /// The instructions.
@@ -43,7 +43,7 @@ namespace XenonCore {
             label.Position = Instructions.Count;
         }
 
-        public void Compile () {
+        public void Resolve () {
             foreach (var labelPos in LabelReferences.Keys) {
                 Instructions[labelPos] = new Instruction (
                     opcode: Instructions [labelPos].Opcode,
