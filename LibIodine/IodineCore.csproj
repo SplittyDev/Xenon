@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DCA6779-F4F6-432B-A494-2D2A83310422}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>IodineCore</RootNamespace>
+    <AssemblyName>libiodine</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Lexer\Lexer.cs" />
+    <Compile Include="Lexer\Lexeme.cs" />
+    <Compile Include="Lexer\TokenClass.cs" />
+    <Compile Include="Lexer\LexerConstants.cs" />
+    <Compile Include="Parser\ParsingUnit.cs" />
+    <Compile Include="Parser\ParserException.cs" />
+    <Compile Include="Parser\Parser.cs" />
+    <Compile Include="AST\AstNode.cs" />
+    <Compile Include="Visitors\IVisitor.cs" />
+    <Compile Include="Visitors\AstVisitor.cs" />
+    <Compile Include="AST\AstRoot.cs" />
+    <Compile Include="Lexer\SourceCursor.cs" />
+    <Compile Include="Lexer\SourceLocation.cs" />
+    <Compile Include="Lexer\SourceUnit.cs" />
+    <Compile Include="Parser\AstVisualizer.cs" />
+    <Compile Include="AST\FunctionDeclaration.cs" />
+    <Compile Include="AST\NamedParameter.cs" />
+    <Compile Include="AST\NameExpression.cs" />
+    <Compile Include="AST\CodeBlock.cs" />
+    <Compile Include="Parser\BinaryOperation.cs" />
+    <Compile Include="Parser\UnaryOperation.cs" />
+    <Compile Include="AST\BinaryExpression.cs" />
+    <Compile Include="AST\TernaryExpression.cs" />
+    <Compile Include="AST\UnaryExpression.cs" />
+    <Compile Include="AST\CallExpression.cs" />
+    <Compile Include="Parser\ArgumentList.cs" />
+    <Compile Include="AST\TupleExpression.cs" />
+    <Compile Include="AST\IntegerExpression.cs" />
+    <Compile Include="AST\FloatExpression.cs" />
+    <Compile Include="AST\StringExpression.cs" />
+    <Compile Include="AST\ListExpression.cs" />
+    <Compile Include="Compiler\SymbolTable.cs" />
+    <Compile Include="Compiler\Symbol.cs" />
+    <Compile Include="Compiler\Scope.cs" />
+    <Compile Include="Compiler\Compiler.cs" />
+    <Compile Include="Compiler\SemanticAnalyzer.cs" />
+    <Compile Include="Runtime\IodineModule.cs" />
+    <Compile Include="Runtime\IodineObject.cs" />
+    <Compile Include="Runtime\IodineType.cs" />
+    <Compile Include="Compiler\Emitter.cs" />
+    <Compile Include="Compiler\Instruction.cs" />
+    <Compile Include="Compiler\Opcode.cs" />
+    <Compile Include="Compiler\Label.cs" />
+    <Compile Include="Compiler\CompilerContext.cs" />
+    <Compile Include="Runtime\IodineName.cs" />
+    <Compile Include="Compiler\MethodFlags.cs" />
+    <Compile Include="Runtime\IodineString.cs" />
+    <Compile Include="Runtime\IodineBytecode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lexer\" />
+    <Folder Include="Parser\" />
+    <Folder Include="AST\" />
+    <Folder Include="Visitors\" />
+    <Folder Include="Compiler\" />
+    <Folder Include="Runtime\" />
+    <Folder Include="Runtime\Types\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
